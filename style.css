@@ -1,0 +1,11 @@
+body {
+  font-family: Arial;
+  background: #0a0f1e;
+  color: white;
+}
+
+.card {
+  border: 1px solid #1e90ff;
+  padding: 15px;
+  margin: 10px;
+}
