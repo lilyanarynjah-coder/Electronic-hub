@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electronichub</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
 
+<body>
+
+<nav>
+  <h1>⚡ Electronichub</h1>
+
+  <div>
+    <% if (user) { %>
+      <span>Hi, <%= user.username %></span>
+      <a href="/logout">Logout</a>
+      <% if (user.role === 'admin') { %>
+        <a href="/admin/orders">Orders</a>
+      <% } %>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <% } %>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- 🚀 PROJECTS SECTION -->
+  <h2>🚀 Projects</h2>
+
+  <div class="grid">
+    <% projects.filter(p => p.type === 'project').forEach(p => { %>
+      <div class="card">
+        
+        <% if (p.images) { %>
+          <img src="/uploads/<%= p.images %>" class="card-img">
+        <% } %>
+
+        <h3><%= p.title %></h3>
+        <p><%= p.description %></p>
+
+        <a href="/project/<%= p.id %>" class="btn">View Details</a>
+      </div>
+    <% }) %>
+  </div>
+
+
+  <!-- 🛒 COMPONENT STORE -->
+  <h2>🛒 Components Store</h2>
+
+  <div class="grid">
+    <% projects.filter(p => p.type === 'component').forEach(p => { %>
+      <div class="card">
+
+        <% if (p.images) { %>
+          <img src="/uploads/<%= p.images %>" class="card-img">
+        <% } %>
+
+        <h3><%= p.title %></h3>
+        <p><%= p.description %></p>
+
+        <p class="price">₹ <%= p.price %></p>
+
+        <a href="/buy/<%= p.id %>" class="btn buy-btn">Buy Now</a>
+      </div>
+    <% }) %>
+  </div>
+
+</div>
+
+</body>
+</html>
